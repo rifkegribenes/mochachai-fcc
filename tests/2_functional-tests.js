@@ -115,9 +115,7 @@ suite('Functional Tests', function() {
       // !!!! Follow the order of the assertions in the preceding example!!!!, 
       // we rely on it in our tests.
       
-      test('send {surname: "Colombo"}',  function(done){
-       
-       // we setup the request for you...
+      test('send {surname: "Colombo"}',  function(done){ 
        chai.request(server)
         .put('/travellers')
         /** send {surname: 'Colombo'} here **/
@@ -138,16 +136,16 @@ suite('Functional Tests', function() {
         });
       });
 
-      /** Repetition is the mother of learning. **/
-      // Try it again. This time without help !!
       test('send {surname: "da Verrazzano"}', function(done) {
-        /** place the chai-http request code here... **/
         chai.request(server)
-        
-        /** place your tests inside the callback **/
-        
-        assert.fail(); // remove this after adding tests
-        done();
+         .put('/travellers')
+         .send({surname: "da Verrazzano"})
+         .end(function(err, res){
+            assert.equal(res.status, 200, 'response status should be 200');
+            assert.equal(res.type, 'application/json', "Response should be json");
+            assert.equal(res.body.name, 'Giovanni', 'res.body.name should be "Giovanni"');
+            assert.equal(res.body.surname, 'da Verrazzano', 'res.body.surname should be "da Verrazzano"');
+            done();
       });
     });
 
