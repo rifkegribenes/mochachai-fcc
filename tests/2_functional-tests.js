@@ -148,7 +148,7 @@ suite('Functional Tests', function() {
             done();
       });
     });
-
+ });
   });
 
   // In the next challenges we are going to simulate the human interaction with
